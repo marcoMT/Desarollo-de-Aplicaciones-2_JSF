@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>#{str.sellerFormTitle}</title>
+    </h:head>
+    <h:body>
+        <ui:composition template="/templates/template.xhtml">
+            <ui:define name="contenido">
+                <h2>#{str.sellerFormHeader}</h2>
+                <p:fieldset legend="#{str.sellerLegendForm}">
+                    <h:form>
+                        <h:panelGrid columns="1">
+                            <p:inputText placeholder="#{str.sellerNamePrompt}"
+                                         value="#{vendedorBean.vendedor.nombreVendedor}"></p:inputText>
+                            <p:inputText placeholder="#{str.sellerMercPrompt}"
+                                         value="#{vendedorBean.vendedor.mercancia}"></p:inputText>
+                            <p:inputText placeholder="#{str.sellerSupplierPrompt}"
+                                         value="#{vendedorBean.vendedor.mejorProveedor}"></p:inputText>
+                            <p:selectOneMenu value="#{vendedorBean.vendedor.mercado.idMercado}">
+                                <f:selectItems value="#{vendedorBean.mercados}" var="m"
+                                               itemLabel="#{m.nombre}" itemValue="#{m.idMercado}"></f:selectItems>
+                            </p:selectOneMenu>
+                        </h:panelGrid>
+                        <p:commandButton value="#{str.buttonSave}"
+                                         action="#{vendedorBean.guardar()}"></p:commandButton>
+                        <p:commandButton value="#{str.buttonDelete}"
+                                         action="#{vendedorBean.eliminar()}"></p:commandButton>
+                        <p:commandButton value="#{str.buttonCancel}"
+                                         action="#{vendedorBean.cancelar()}"></p:commandButton>
+                    </h:form>
+                </p:fieldset>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+
